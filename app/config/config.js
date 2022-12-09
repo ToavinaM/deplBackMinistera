@@ -15,11 +15,16 @@ module.exports = {
     "dialect": "postgres"
   },
   "production": {
-    "username": "postgres",
-    "password": "mdpprom13",
-    "database": "ministera",
-    "host": "localhost",
-    "dialect": "postgres"
+    "username": "dbmeah_user",
+    "password": "2DfSAzeqJIz9S6h0BzT4XK2CZH4ezfZK",
+    "database": "dbmeah",
+    "host": "dpg-ce9dtlhgp3jtsams07lg-a",
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "rejectUnauthorized": "true",
+      },
+    },
   }
 };
 
