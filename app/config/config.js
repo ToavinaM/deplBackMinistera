@@ -14,11 +14,12 @@ module.exports = {
     "host": "localhost",
     "dialect": "postgres"
   },
+  // postgres://dbmeah_4n4p_user:prRAAvQqyPWb3jOI1qrZDsxcDKTSlC1S@dpg-ce9hh9en6mpgqu99ddig-a.oregon-postgres.render.com/dbmeah_4n4p
   "production": {
-    "username": "dbmeah_user",
-    "password": "2DfSAzeqJIz9S6h0BzT4XK2CZH4ezfZK",
-    "database": "dbmeah",
-    "host": "dpg-ce9dtlhgp3jtsams07lg-a",
+    "username": "dbmeah_4n4p_user",
+    "password": "prRAAvQqyPWb3jOI1qrZDsxcDKTSlC1S",
+    "database": "dbmeah_4n4p",
+    "host": "dpg-ce9hh9en6mpgqu99ddig-a",
     "dialect": "postgres",
     "dialectOptions": {
       "ssl": {
