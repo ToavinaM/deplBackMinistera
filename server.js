@@ -48,117 +48,117 @@ require('./app/routes/historique.routes')(app);
 // require('./app/routes/status.routes')(app);
 const db = require("./app/models");
 
-db.sequelize.sync({ force: true }).then(() => {
-    console.log('Synchronysation des models et insertion des donnee minimal ');
-    //////////Departement//////////
-    db.Departement.create({
-        intitule: "DSI"
-    });
-    db.Departement.create({
-        intitule: "RH"
-    });
-    db.Departement.create({
-        intitule: "Juridique"
-    });
-    ////////user
-    var bcrypt = require("bcryptjs");
-    db.User.create({
-        email: 'rh@gmail.com',
-        username: "rh",
-        password: bcrypt.hashSync('rh', 8),
-        isActive: true,
-        contact: '+261344003904',
-        DepartementId: 2,
-    });
-    db.User.create({
-        email: 'dsi@gmail.com',
-        username: "dsi",
-        password: bcrypt.hashSync('dsi', 8),
-        isActive: true,
-        contact: '+261344003904',
-        DepartementId: 1,
-    });
-    //////////Probleme///////////
-    db.Probleme.create({
-        labele: "Financiere"
-    });
-    db.Probleme.create({
-        labele: "Paperrasse"
-    });
-    db.Probleme.create({
-        labele: "Materiele"
-    });
+// db.sequelize.sync({ force: true }).then(() => {
+//     console.log('Synchronysation des models et insertion des donnee minimal ');
+//     //////////Departement//////////
+//     db.Departement.create({
+//         intitule: "DSI"
+//     });
+//     db.Departement.create({
+//         intitule: "RH"
+//     });
+//     db.Departement.create({
+//         intitule: "Juridique"
+//     });
+//     ////////user
+//     var bcrypt = require("bcryptjs");
+//     db.User.create({
+//         email: 'rh@gmail.com',
+//         username: "rh",
+//         password: bcrypt.hashSync('rh', 8),
+//         isActive: true,
+//         contact: '+261344003904',
+//         DepartementId: 2,
+//     });
+//     db.User.create({
+//         email: 'dsi@gmail.com',
+//         username: "dsi",
+//         password: bcrypt.hashSync('dsi', 8),
+//         isActive: true,
+//         contact: '+261344003904',
+//         DepartementId: 1,
+//     });
+//     //////////Probleme///////////
+//     db.Probleme.create({
+//         labele: "Financiere"
+//     });
+//     db.Probleme.create({
+//         labele: "Paperrasse"
+//     });
+//     db.Probleme.create({
+//         labele: "Materiele"
+//     });
 
-    db.Probleme.create({
-        labele: "Autre"
-    });
-    /////////////Priority/////////////////
-    db.Priorite.create({
-        labele: "Bas",
-        config: 1
-    });
-    db.Priorite.create({
-        labele: "   Moyenn",
-        config: 2
-    });
-    db.Priorite.create({
-        labele: "Urgent",
-        config: 3
-    });
+//     db.Probleme.create({
+//         labele: "Autre"
+//     });
+//     /////////////Priority/////////////////
+//     db.Priorite.create({
+//         labele: "Bas",
+//         config: 1
+//     });
+//     db.Priorite.create({
+//         labele: "   Moyenn",
+//         config: 2
+//     });
+//     db.Priorite.create({
+//         labele: "Urgent",
+//         config: 3
+//     });
 
-    /////////////Statut/////////////////
-    db.Statut.create({
-        labele: "todo"
-    });
-    db.Statut.create({
-        labele: "inProgress"
-    });
-    db.Statut.create({
-        labele: "doing"
-    });
+//     /////////////Statut/////////////////
+//     db.Statut.create({
+//         labele: "todo"
+//     });
+//     db.Statut.create({
+//         labele: "inProgress"
+//     });
+//     db.Statut.create({
+//         labele: "doing"
+//     });
 
-    /////////Role
-    db.Role.create({
-        name: "Admin"
-    });
-    db.Role.create({
-        name: "Moderator"
-    });
-    db.Role.create({
-        name: "User"
-    });
+//     /////////Role
+//     db.Role.create({
+//         name: "Admin"
+//     });
+//     db.Role.create({
+//         name: "Moderator"
+//     });
+//     db.Role.create({
+//         name: "User"
+//     });
 
-    //////////projet///////////
-    // Create projet
-    db.Projet.create({
-        debut: new Date('12/11/22'),
-        fin: new Date('7/12/22'),
-        titre: 'Water Tracking',
-        latitude: -18.929996530637386,
-        longitude: 47.60935709791363,
-        DepartementId: 1,
-        color: "#009688"
-    });
-    db.Projet.create({
-        debut: new Date('12/11/22'),
-        fin: new Date('7/12/22'),
-        titre: 'Phare de l eau',
-        latitude: -18.929996530637386,
-        longitude: 47.60935709791363,
-        DepartementId: 1,
-        color: "#009688"
-    });
-    db.Projet.create({
-        debut: new Date('12/11/22'),
-        fin: new Date('7/12/22'),
-        titre: 'RHHUHU',
-        latitude: -18.929996530637386,
-        longitude: 47.60935709791363,
-        DepartementId: 2,
-        color: "#009688"
-    });
+//     //////////projet///////////
+//     // Create projet
+//     db.Projet.create({
+//         debut: new Date('12/11/22'),
+//         fin: new Date('7/12/22'),
+//         titre: 'Water Tracking',
+//         latitude: -18.929996530637386,
+//         longitude: 47.60935709791363,
+//         DepartementId: 1,
+//         color: "#009688"
+//     });
+//     db.Projet.create({
+//         debut: new Date('12/11/22'),
+//         fin: new Date('7/12/22'),
+//         titre: 'Phare de l eau',
+//         latitude: -18.929996530637386,
+//         longitude: 47.60935709791363,
+//         DepartementId: 1,
+//         color: "#009688"
+//     });
+//     db.Projet.create({
+//         debut: new Date('12/11/22'),
+//         fin: new Date('7/12/22'),
+//         titre: 'RHHUHU',
+//         latitude: -18.929996530637386,
+//         longitude: 47.60935709791363,
+//         DepartementId: 2,
+//         color: "#009688"
+//     });
 
-})
+// })
 
 
 const PORT = 8080;
