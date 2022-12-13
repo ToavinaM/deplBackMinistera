@@ -7,12 +7,13 @@ module.exports = {
     "host": "localhost",
     "dialect": "postgres"
   },
+
   "test": {
-    "username": "postgres",
-    "password": "root",
-    "database": "Tsisy",
-    "host": "localhost",
-    "dialect": "postgres"
+    "username": "cua_sma",
+    "password": "cua_sma",
+    "database": "bd_sma",
+    "host": "102.16.44.235",
+    "dialect": "mysql"
   },
 
   "production": {
@@ -28,5 +29,3 @@ module.exports = {
     },
   }
 };
-
-

@@ -1,6 +1,3 @@
-// ato za no mireceive data,
-//     ato no mfind,
-//         ato no mandefa json
 
 const models = require("../models");
 const Commentaire = models.Commentaire;

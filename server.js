@@ -18,17 +18,26 @@ app.use(express.raw());
 // });
 
 var corsOptions = {
-    origin: "https://meah-suivi.onrender.com"
-    // origin: "http://localhost:3000"
+    origin: "https://meah-suivi.onrender.com",
+    origin: "http://localhost:3000"
     // origin: "http://localhost:19006"
 };
 
+
+// insert into "Bac" (numero_signalement,date_signalement,heure_signalement,etat_in_bac,etat_debordement,code_bac,nom_pc,localisation,longitude,latitude) 
+// values(42926,'2022-12-12','14:09:23','5','1','5026','T P 2','Enceinte Travaux Publics Alarobia','-18.871884','47.521663');
+// insert into "Bac" (numero_signalement,"date_signalement","heure_signalement","etat_in_bac","etat_debordement","code_bac","nom_pc","localisation","longitude","latitude") 
+// values(814,"2022-05-13","21:22:52","4","1","5027","BETON France","PrÃ¨s muraille sÅ“ur Ambodivoanjo","-18.871713","47.535326");
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //route 
+// require('./app/routes/parametre.routes')(app);
+
+require('./app/routes/bac.routes')(app);
+
 require('./app/routes/parametre.routes')(app);
 require('./app/routes/dash.routes')(app);
 require('./app/routes/problemeTache.routes')(app);
@@ -47,6 +56,10 @@ require('./app/routes/historique.routes')(app);
 // require('./app/routes/priority.routes')(app);
 // require('./app/routes/status.routes')(app);
 const db = require("./app/models");
+
+db.sequelize.sync().then(() => {
+    console.log('migration des models');
+});
 
 // db.sequelize.sync({ force: true }).then(() => {
 //     console.log('Synchronysation des models et insertion des donnee minimal ');
@@ -159,8 +172,6 @@ const db = require("./app/models");
 //     });
 
 // })
-
-
 const PORT = 8080;
 // const PORT = 3001;
 app.listen(PORT, () => {
