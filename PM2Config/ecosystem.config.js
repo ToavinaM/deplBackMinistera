@@ -1,11 +1,11 @@
 module.exports = {
   apps: [{
     name: "API-Operationnel",
-    script: "../deplBackMinistera/server.js"
+    script: "../server.js"
   },
   {
     name: "FRONT-Operationnel",
-    script: "../MinisteraFront/index.js",
+    script: "../../../client/MinisteraFront/serve build 8081 --spa",
   }
   ]
 }
