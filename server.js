@@ -18,9 +18,9 @@ app.use(express.raw());
 // });
 
 var corsOptions = {
-    origin: "https://meah-suivi.onrender.com",
+    // origin: "https://meah-suivi.onrender.com",
+    origin: "http://localhost:5000",
     origin: "http://localhost:3000"
-    // origin: "http://localhost:19006"
 };
 
 
@@ -32,9 +32,6 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
-
-//route 
-// require('./app/routes/parametre.routes')(app);
 
 require('./app/routes/bac.routes')(app);
 
@@ -56,10 +53,9 @@ require('./app/routes/historique.routes')(app);
 // require('./app/routes/priority.routes')(app);
 // require('./app/routes/status.routes')(app);
 const db = require("./app/models");
-
-db.sequelize.sync().then(() => {
-    console.log('migration des models');
-});
+// db.sequelize.sync().then(() => {
+//     console.log('migration des models');
+// });
 
 // db.sequelize.sync({ force: true }).then(() => {
 //     console.log('Synchronysation des models et insertion des donnee minimal ');
@@ -173,8 +169,6 @@ db.sequelize.sync().then(() => {
 
 // })
 const PORT = 8080;
-// const PORT = 3001;
 app.listen(PORT, () => {
-    // console.log(`localhost: ${PORT}.`);
     console.log(`⚡Server is running on port ${PORT}.`);
 });
