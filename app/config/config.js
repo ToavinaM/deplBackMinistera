@@ -8,14 +8,12 @@ module.exports = {
     "dialect": "postgres"
   },
 
-  
-  
   "test": {
-    "username": "cua_sma",
-    "password": "cua_sma",
-    "database": "bd_sma",
-    "host": "102.16.44.235",
-    "dialect": "mysql"
+    "username": "postgres",
+    "password": "root",
+    "database": "Ministera",
+    "host": "localhost",
+    "dialect": "postgres"
   },
 
   "production": {

@@ -9,6 +9,6 @@ module.exports = function (app) {
         next();
     });
 
-    app.get("/api/bac", controlerBac.getAllBac);
+    app.post("/api/bac", controlerBac.getAllBac);
 
 }

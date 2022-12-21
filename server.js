@@ -21,7 +21,7 @@ var corsOptions = {
     // origin: "https://meah-suivi.onrender.com",
 
     // VERSION BUILD NO ALEEFA
-    origin:[ "http://localhost:8081", "http://41.188.43.90:8081"]   
+    origin: ["http://localhost:3000", "http://41.188.43.90:8081"]
     // origin: "http://41.188.43.90:8081",
     // origin: "http://41.188.43.90:8081"
 };
@@ -61,12 +61,12 @@ require('./app/routes/historique.routes')(app);
 
 const db = require("./app/models");
 
-db.sequelize.sync().then(() => {
-    console.log('migration des models DONT BAC');
-});
-// insert into "Bac" (numero_signalement,date_signalement,heure_signalement,etat_in_bac,etat_debordement,code_bac,nom_pc,localisation,longitude,latitude) 
-// values(42926,'2022-12-12','14:09:23','5','1','5026','T P 2','Enceinte Travaux Publics Alarobia','-18.871884','47.521663'),
-// (814,'2022-05-13','21:22:52','4','1','5027','BETON France','PrÃ¨s muraille sÅ“ur Ambodivoanjo','-18.871713','47.535326');
+// db.sequelize.sync().then(() => {
+//     console.log('migration des models DONT BAC');
+// });
+// insert into "Bac"(numero_signalement, date_signalement, heure_signalement, etat_in_bac, etat_debordement, code_bac, nom_pc, localisation, longitude, latitude)
+// values(42926, '2022-12-12', '14:09:23', '5', '1', '5026', 'T P 2', 'Enceinte Travaux Publics Alarobia', '-18.871884', '47.521663'),
+//     (814, '2022-05-13', '21:22:52', '4', '1', '5027', 'BETON France', 'PrÃ¨s muraille sÅ“ur Ambodivoanjo', '-18.871713', '47.535326');
 // db.sequelize.sync({ force: true }).then(() => {
 //     console.log('Synchronysation des models et insertion des donnee minimal ');
 //     //////////Departement//////////
