@@ -2,7 +2,7 @@
 const { condition } = require('sequelize');
 const { QueryTypes } = require('sequelize');
 const { verifyToken } = require('../middleware/authJwt');
-
+const moment = require('moment');
 const models = require("../models");
 const BacModel = models.Bac;
 const db = require("../models");
@@ -33,20 +33,14 @@ function sendLabel() {
 
 exports.getAllBac = async (req, res) => {
     // let labele = sendLabel();
-    // let requestFiltre = {
-    //     etatBac: req.body.etatBac,
-    //     etatDebordement: req.body.etatDebordement,
-    //     date: {
-    //         debut: '22/11/12',
-    //         fin: '22/11/12',
-    //     }
-    // }
     // console.log('REQREQ', req.body);
+console.log('JKHFKJFGJHGFJHFJHfgg',moment(req.body.date).format('DD/MM/YYYY'));
     conditionEtatBac = req.body.etatBac == 0 ? ' ' : `and etat_in_bac = ${req.body.etatBac}`;
     conditionEtatDebordement = req.body.etatDebordement == 0 ? ' ' : `and etat_debordement =${req.body.etatDebordement}`;
+    conditionDate = `and date_signalement='${moment(req.body.date).format('DD/MM/YYYY')}'`;
 
     // conditionEtatDebordement = req.body.etatDebordement == 0 ? ' ' : `and etat_debordement =${req.body.etatDebordement}`;
-    let condition = conditionEtatBac + ' ' + conditionEtatDebordement;
+    let condition = conditionEtatBac+ ' '+ conditionEtatDebordement+ ' '+conditionDate ;
 
     await db.sequelize.query(
         `SELECT * FROM public."Bac" where 1=1 ${condition}`, {
