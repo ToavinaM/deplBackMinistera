@@ -3,7 +3,7 @@
 //         ato no mandefa json
 //misy erreur ilay res.send message, milla jerena ilay izy
 const models = require("../models");
-const { avancement } = require("./projet.controller copy");
+// const { avancement } = require("./projet.controller copy");
 const ProjetModel = models.Projet;
 const TacheModel = models.Tache;
 
@@ -96,37 +96,40 @@ async function caculAvancement(idProjet) {
       totalTache = tacheRet.length;
       tacheRet.map(tache => {
         if (tache.dataValues.StatutId === 3) tacheTerminer++;
-        avancement = Math.round((tacheTerminer * 100) / totalTache,2)
+        avancement = ((tacheTerminer * 100) / totalTache)
       })
     }).catch(err => { console.log('error', err) });
+
   return { totalTache, tacheTerminer, avancement }
 }
 
 async function buildCardProjet(arrayProjetNotDataValues) {
   let retour = []; //retourne un projet modifier
-  for (let projet of arrayProjetNotDataValues) {
+  arrayProjetNotDataValues.map(async projet => {
     let cardprojet = projet.dataValues;
     await caculAvancement(cardprojet.id)
       .then(rep => {
         cardprojet.totalTache = rep.totalTache; cardprojet.tacheTerminer = rep.tacheTerminer; cardprojet.avancement = rep.avancement;
-        retour.push(cardprojet);
-      })
-      .catch(err => { console.log(err) })
-  }
-  return retour;
+        retour.push({ cardprojet, ...rep.totalTache, ...rep.tacheTerminer, ...rep.avancement });
+        return retour;
+      }).catch(err => { console.log(err) })
+  });
 }
 
 
-exports.ProjetByDepartement = (req, res) => {
+exports.ProjetByDepartement = async (req, res) => {
   console.log("================================");
-  ProjetModel.findAll({ where: { DepartementId: req.params.dept } })
+  ProjetModel.findAll({ where: { DepartementId: req.params.dept } })  //where departement
     .then(data => {
-      // res.send(data);
+      /////////call
       buildCardProjet(data)
         .then(rep => {
+          console.log(rep);
           res.send(rep);
+        }).catch(err => {
+          console.log(err)
         })
-        .catch(err => { console.log(err) });
+      // res.send(data);
     })
     .catch(err => { console.log(err) });
 }

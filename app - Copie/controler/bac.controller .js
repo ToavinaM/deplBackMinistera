@@ -9,6 +9,28 @@ const db = require("../models");
 // const TacheModel = db.Tache;
 // where etat_in_back etat_debordement
 
+function sendLabel() {
+    let labelStatusBac = [
+        { labele: 'Etat Bac', id: 0 },
+        { labele: 'Quart', id: 1 },
+        { labele: 'Demi', id: 2 },
+        { labele: 'trois quart', id: 3 },
+        { labele: 'Plein', id: 4 },
+        { labele: 'Trop Plein', id: 5 },
+        { labele: 'Debordement', id: 6 }
+    ];
+    let labelDebordement = [
+        { labele: 'Etat Debordement', id: 0 },
+        { labele: 'Quart', id: 1 },
+        { labele: 'Demi', id: 2 },
+        { labele: 'trois quart', id: 3 },
+        { labele: 'Plein', id: 4 },
+        { labele: 'Trop Plein', id: 5 },
+        { labele: 'Debordement', id: 6 }
+    ]
+    return { labelStatusBac, labelDebordement };
+};
+
 exports.getAllBac = async (req, res) => {
     conditionEtatBac = req.body.etatBac == 0 ? ' ' :`and etat_in_bac = ${req.body.etatBac}`;
     conditionEtatDebordement = req.body.etatDebordement == 0 ? ' ' :`and etat_debordement =${req.body.etatDebordement}`;
@@ -19,6 +41,7 @@ exports.getAllBac = async (req, res) => {
         type: QueryTypes.SELECT
     })
         .then(data => {
+    //function
         let effectif = [0,0,0,0,0,0,0];
         for (const bac of data) {
             switch (bac.etat_in_bac) {

@@ -96,9 +96,10 @@ async function caculAvancement(idProjet) {
       totalTache = tacheRet.length;
       tacheRet.map(tache => {
         if (tache.dataValues.StatutId === 3) tacheTerminer++;
-        avancement = Math.round((tacheTerminer * 100) / totalTache,2)
+        avancement = ((tacheTerminer * 100) / totalTache)
       })
     }).catch(err => { console.log('error', err) });
+
   return { totalTache, tacheTerminer, avancement }
 }
 
