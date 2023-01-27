@@ -7,8 +7,12 @@ module.exports = function (app) {
         );
         next();
     });
+    //by id departement
+    app.get("/api/tache/byDept/:idDepartement", controlerTache.findBydept);
+
     //retard Tache to in progress
     app.put("/api/tache/updateRetard", controlerTache.activePrevisionalLate);
+
     //post Tache
     app.post("/api/tache/add", controlerTache.AjoutTache);
     //GET ALL

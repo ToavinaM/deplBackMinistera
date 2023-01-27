@@ -2,9 +2,27 @@ const models = require("../models");
 const TacheModel = models.Tache;
 const Commentaire = models.Commentaire;
 // const SousTache = models.SousTache;
+const { QueryTypes } = require('sequelize');
+exports.findBydept = async (req, res) => {
+  await models.sequelize.query(`
+      select t.titre  as tache,  t.debut, t.fin, t.description, t."StatutId", t."PrioriteId", t."ProjetId", 
+      p.titre, p."DepartementId" from "Tache" as t
+      join "Projet" as p
+      on t."ProjetId" = p.id
+      where "DepartementId" = ${req.params.idDepartement};
+  `, {
+    type: QueryTypes.SELECT
+  })
+    .then(result => {
+      res.send(result)
+    })
+    .catch(err => {
+      res.status(500).send({ message: err.message });
+    });
+}
 
 exports.activePrevisionalLate = (req, res) => {
-  console.log('huu', req.body.tacheRetard);
+  // console.log('huu', req.body.tacheRetard);
   let ids = [];
   req.body.tacheRetard.map(val => {
     ids.push(val.id);
