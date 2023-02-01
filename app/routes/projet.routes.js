@@ -7,6 +7,8 @@ module.exports = function (app) {
         );
         next();
     });
+    //get Gantt By depr
+    app.get("/api/gantt/:idDepartement", controlerProjet.getGanttByDepartement);
     //get All projet
     app.get("/api/projet/projets", controlerProjet.getAllProjet);
     //post projet

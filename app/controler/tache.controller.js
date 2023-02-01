@@ -2,24 +2,66 @@ const models = require("../models");
 const TacheModel = models.Tache;
 const Commentaire = models.Commentaire;
 // const SousTache = models.SousTache;
-const { QueryTypes } = require('sequelize');
-exports.findBydept = async (req, res) => {
-  await models.sequelize.query(`
-      select t.titre  as tache,  t.debut, t.fin, t.description, t."StatutId", t."PrioriteId", t."ProjetId", 
-      p.titre, p."DepartementId" from "Tache" as t
-      join "Projet" as p
-      on t."ProjetId" = p.id
-      where "DepartementId" = ${req.params.idDepartement};
-  `, {
-    type: QueryTypes.SELECT
-  })
-    .then(result => {
-      res.send(result)
-    })
-    .catch(err => {
-      res.status(500).send({ message: err.message });
-    });
-}
+// const { QueryTypes } = require('sequelize');
+// exports.findBydept = async (req, res) => {
+
+
+//   //tache by departement
+//   await models.sequelize.query(`
+//       select t.titre  as tache,  t.debut, t.fin, t.description, t."StatutId", t."PrioriteId", t."ProjetId", 
+//       p.titre, p."DepartementId" from "Tache" as t
+//       join "Projet" as p
+//       on t."ProjetId" = p.id
+//       where "DepartementId" = ${req.params.idDepartement};
+//   `, {
+//     type: QueryTypes.SELECT
+//   })
+//     .then(result => {
+
+
+//       function convertToGantData(pj) {
+//         let arrayModel = [];
+
+//         for (const pro of pj) {
+//           let modelDataGantt = {
+//             name: pro.titre,
+//             id: pro.id + pro.titre,
+//             start: new Date(pro.debut).getTime(),
+//             end: new Date(pro.fin).getTime(),
+//             parent: '',
+//           }
+//           arrayModel.push(modelDataGantt);
+//         }
+//         console.log('bhbh', arrayModel)
+//         return arrayModel;
+//       }
+
+//       async function affectTacheToProject(pj, tache) {
+//         let arrayModel = [];
+//         for (const p of pj) {
+//           for (const t of tache) {
+//             if (t.ProjetId === p.id) {
+//               let modelDataGantt = {
+//                 name: t.tache,
+//                 id: t.titre,
+//                 start: new Date(t.debut).getTime(),
+//                 end: new Date(t.fin).getTime(),
+//                 parent: p.id + p.titre
+//               }
+//               arrayModel.push(modelDataGantt);
+//             }
+//           }
+//         }
+//         return await arrayModel;
+//       }
+
+
+//       res.send(result)
+//     })
+//     .catch(err => {
+//       res.status(500).send({ message: err.message });
+//     });
+// }
 
 exports.activePrevisionalLate = (req, res) => {
   // console.log('huu', req.body.tacheRetard);
