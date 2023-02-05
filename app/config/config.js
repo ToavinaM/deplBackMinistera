@@ -1,6 +1,6 @@
 require('dotenv').config(); // this is important!
 module.exports = {
-  "development": { //test
+  "development": {
     "username": "postgres",
     "password": "admin",
     "database": "suivi-operationnel",
@@ -11,9 +11,10 @@ module.exports = {
   "test": {
     "username": "postgres",
     "password": "root",
-    "database": "Ministera",
+    "database": "suivi-operationnel",
     "host": "localhost",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "port": "5433"
   },
 
   "production": {
